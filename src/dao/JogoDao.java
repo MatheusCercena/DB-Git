@@ -1,52 +1,64 @@
 package dao;
 
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
+
+import model.Jogo;
 
 public class JogoDao {
-	private int id;
-	private String nome;
-	private Date dataLancamento;
-	private double nota;
+	public Connection getConexao() {
+		String driver = "com.mysql.cj.jdbc.Driver";
+		
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		String url = "jdbc:mysql://localhost:3306/ies"; // 3306 = porta padrao mysql, pesquisar especificas, alterar tambem o nome do SGBD
+		String senha = "1234";
+		String user = "root";
+		
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection(url, user, senha);
+			System.out.println("Banco de dados conectado.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+		
+		
+	}
 	
-	public JogoDao(String nome, Date dataLancamento, double nota) {
-		super();
-		this.nome = nome;
-		this.dataLancamento = dataLancamento;
-		this.nota = nota;
+	public List<Jogo> listarJogos(){
+		return null;
+	}
+	
+	public boolean inserirJogo() {
+		return true;
+	}
+	
+	public Jogo inserirJogo(Jogo novoJogo) {
+		return null;
 	}
 
-	public int getId() {
-		return id;
+	public Jogo alterarrJogo(Jogo jogoAlterado) {
+		return null;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	
+	public boolean excluirJogo() {
+		return true;
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Date getDataLancamento() {
-		return dataLancamento;
-	}
-
-	public void setDataLancamento(Date dataLancamento) {
-		this.dataLancamento = dataLancamento;
-	}
-
-	public double getNota() {
-		return nota;
-	}
-
-	public void setNota(double nota) {
-		this.nota = nota;
-	}
-
+	
 
 	
+	
+	
+
+
 }

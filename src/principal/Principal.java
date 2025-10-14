@@ -44,7 +44,10 @@ public class Principal {
 						e.printStackTrace();
 					}
 				}
+				System.out.println("Sistema encerrado, até a próxima!");
+				scanner.close();
 				System.exit(0);
+				
 				break;
 			default:
 				System.out.println("Selecione uma opção válida (deve ser um número de 1 a " + opcoes.size() + ".");
