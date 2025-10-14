@@ -17,7 +17,7 @@ public class Principal {
 		System.out.println("- - - Bem vindo - - -");
 		System.out.println("- - - Menu - - - ");
 		for (int i = 0; i < opcoes.size() ; i++) {
-			System.out.println(i + ". "+ opcoes.get(i));
+			System.out.println(i+1 + ". "+ opcoes.get(i));
 		}		
 		System.out.printf("Selecione a opção correspondente: ");
 		
@@ -36,6 +36,15 @@ public class Principal {
 				break;
 			case 4:
 				System.out.println("Case 4 " + opcoes.get(3) + " funcionando");
+				for (int i = 3; i > 0 ; i--) {
+					try {
+						Thread.sleep(1000);
+						System.out.println("Saindo em " + i);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Selecione uma opção válida (deve ser um número de 1 a " + opcoes.size() + ".");
