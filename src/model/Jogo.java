@@ -1,10 +1,11 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Jogo {
 	private int id;
 	private String nome;
+	private String genero;
 	private Date dataLancamento;
 	private double nota;
 	
@@ -12,15 +13,16 @@ public class Jogo {
 		super();
 	}
 
-	public Jogo(int id, String nome, Date dataLancamento, double nota) {
+	public Jogo(int id, String nome, String genero, Date dataLancamento, double nota) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.genero = genero;
 		this.dataLancamento = dataLancamento;
 		this.nota = nota;
 	}
 
-	public Jogo(String nome, Date dataLancamento, double nota) {
+	public Jogo(String nome, String genero, Date dataLancamento, double nota) {
 		super();
 		this.nome = nome;
 		this.dataLancamento = dataLancamento;
@@ -41,6 +43,15 @@ public class Jogo {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public Date getDataLancamento() {
