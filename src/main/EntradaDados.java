@@ -2,10 +2,10 @@ package main;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import model.Jogo;
@@ -15,7 +15,10 @@ public class EntradaDados {
 	public int solicitarOpcao(Scanner scanner) {
 		while (true) {
 			try {
+				System.out.println("");
+				System.out.printf("Selecione a opção correspondente: ");
 				int opcao = scanner.nextInt();
+				scanner.nextLine();
 				return opcao;
 			} catch (InputMismatchException e) {
 				System.out.println("Por favor, digite um número");
@@ -27,19 +30,50 @@ public class EntradaDados {
 	public Jogo solicitarJogo(Scanner scanner) {
 		System.out.println("- - - Insira abaixo os dados do jogo que deseja cadastrar - - -");
 		
-		System.out.print("Nome: ");
-		String nome = scanner.nextLine();
-		
-		System.out.print("Gênero: ");
-		String genero = scanner.nextLine();		
-		
-
+		String nome = solicitarNome(scanner);
+		String genero = solicitarGenero(scanner);	
 		Date data = solicitarData(scanner);
 		double nota = solicitarNota(scanner);
+				
+		Jogo livro = new Jogo(nome, genero, data, nota);
 		
-		Jogo jogo = new Jogo(nome, genero, data, nota);
-		
-		return jogo;
+		return livro;
+	}
+	
+	public String solicitarNome(Scanner scanner) {
+		String nome = "";
+
+		while (true) {
+    		System.out.print("Nome: ");
+    		try {
+    			nome = scanner.nextLine();    
+        		break;
+    		} catch (NoSuchElementException e) {
+    			System.out.println("Por favor, insira algum nome para o seu jogo.");
+    		}
+    		if (nome.length() > 100) { 
+	    		System.out.println("O nome não deve conter mais de 100 caracteres, tente novamente.");
+    		}
+		}
+		return nome;
+	}
+
+	public String solicitarGenero(Scanner scanner) {
+		String genero = "";
+
+		while (true) {
+    		System.out.print("Gênero: ");
+    		try {
+    			genero = scanner.nextLine();    
+        		break;
+    		} catch (NoSuchElementException e) {
+    			System.out.println("Por favor, insira algum genero para o seu jogo.");
+    		}
+    		if (genero.length() > 50) { 
+	    		System.out.println("O genero não deve conter mais de 50 caracteres, tente novamente.");
+    		}
+		}
+		return genero;		
 	}
 	
 	public double solicitarNota(Scanner scanner) {
@@ -70,16 +104,22 @@ public class EntradaDados {
         	for (String formato : formatos) {
     	        try {
     				DateTimeFormatter pattern = DateTimeFormatter.ofPattern(formato);			
-    				
     				LocalDate localDate = LocalDate.parse(entrada, pattern);
     				Date data = Date.valueOf(localDate);
     				return data;
-    	        } catch (IllegalArgumentException e) {			
-    	        	// continua.
+    	        } catch (Exception e) {			
+    	        	e.printStackTrace();
     	        }
     		}		        	
 			System.out.println("Data inválida. Por favor, assegure-se de estar usando um dos seguintes padrões: dd/mm/yyyy, dd-MM-yyyy, dd.MM.yyyy, ddMMyyyy.");
         }
+	}
+
+
+	public int solicitarIdJogo(Scanner scanner) {
+		System.out.println("Digite o ID do jogo que deseja excluir: ");
+		int id_jogo = scanner.nextInt();
+		return id_jogo;
 	}
 	
 

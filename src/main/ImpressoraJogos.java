@@ -12,13 +12,14 @@ public class ImpressoraJogos {
 		System.out.println("1. Cadastrar");
 		System.out.println("2. Listar jogos");
 		System.out.println("3. Excluir jogo");
-		System.out.println("4. Sair");
-		System.out.printf("Selecione a opção correspondente: ");
+		System.out.println("4. Sair"); 
 	}
 	
 	public void imprimirJogos(List<Jogo> jogos) {
 		System.out.println(" - - - Lista de jogos - - - ");				
 		for (Jogo jogo : jogos) {
+			System.out.println("- - - - - - - - - - ");
+			System.out.println("ID: " + jogo.getId() + ".");
 			System.out.println("Nome: " + jogo.getNome() + ".");
 			System.out.println("Gênero: " + jogo.getGenero() + ".");
 			System.out.println("Data de lançamento: " + jogo.getDataLancamento() + ".");
@@ -38,11 +39,11 @@ public class ImpressoraJogos {
 		System.out.println("Sistema encerrado, até a próxima!");
 	}
 
-	public void cadastroRealizado() {
-		System.out.println("Seu jogo foi cadastrado com sucesso.");		
-	}
+	public void cadastroRealizado() {System.out.println("Seu jogo foi cadastrado com sucesso.");}
 
-	public void erroCadastro() {
-		System.out.println("Erro ao cadastrar jogo. Tente novamente.");				
-	}
+	public void erroCadastro() {System.out.println("Erro ao cadastrar jogo. Tente novamente.");}
+
+	public void jogoExcluido() {System.out.println("Seu jogo foi excluído com sucesso.");}
+
+	public void opcaoInvalida() {System.out.println("Selecione uma opção válida (deve ser um número de 1 a 4.");}
 }

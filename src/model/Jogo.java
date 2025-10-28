@@ -2,7 +2,7 @@ package model;
 
 import java.sql.Date;
 
-public class Jogo {
+public class Jogo { 
 	private int id;
 	private String nome;
 	private String genero;
@@ -25,6 +25,7 @@ public class Jogo {
 	public Jogo(String nome, String genero, Date dataLancamento, double nota) {
 		super();
 		this.nome = nome;
+		this.genero = genero;
 		this.dataLancamento = dataLancamento;
 		this.nota = nota;
 	}
@@ -44,7 +45,6 @@ public class Jogo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 	
 	public String getGenero() {
 		return genero;
@@ -69,8 +69,4 @@ public class Jogo {
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
-
-
-	
-
 }
